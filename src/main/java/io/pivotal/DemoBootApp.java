@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package demo.geode;
+package io.pivotal;
 
 import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.CacheFactory;

@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package demo.geode;
+package io.pivotal;
 
-import com.codahale.metrics.Gauge;
-import com.codahale.metrics.JmxReporter;
-import com.codahale.metrics.MetricRegistry;
 import org.apache.geode.StatisticDescriptor;
 import org.apache.geode.Statistics;
 import org.apache.geode.StatisticsType;
 import org.apache.geode.cache.CacheFactory;
 import org.apache.geode.cache.Declarable;
 import org.apache.geode.distributed.DistributedSystem;
+
+import com.codahale.metrics.Gauge;
+import com.codahale.metrics.JmxReporter;
+import com.codahale.metrics.MetricRegistry;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -74,8 +75,6 @@ public class DemoInitializer implements Declarable {
                 .inDomain("DemoRegistry")
                 .build();
         reporter.start();
-
-
     }
 
     private void addStatsToRegistry(DistributedSystem ds, StatisticsType type, String statNameRegex, String[] statsRegularExpression) {

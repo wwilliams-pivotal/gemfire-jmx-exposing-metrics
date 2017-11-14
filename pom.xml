@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+	</parent>
+
+	<groupId>io.pivotal</groupId>
+	<artifactId>jmx_metrics</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>jmx_metrics</name>
+	<description>Demo project for Spring Boot and JMX Metrics</description>
+	<url>https://github.com/wwilliams-pivotal/spring-boot-and-sdg</url>
+
+	<organization>
+		<name>Pivotal Software, Inc.</name>
+		<url>http://www.pivotal.io</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>wwilliams-pivotal</id>
+			<name>Wes Williams</name>
+			<email>wwilliams at pivotal dot io</email>
+			<organization>Pivotal Software, Inc.</organization>
+			<organizationUrl>http://www.pivotal.io</organizationUrl>
+			<roles>
+				<role>Pivotal Architect</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>jblum</id>
+			<name>John Blum</name>
+			<email>jblum at pivotal dot io</email>
+			<organization>Pivotal Software, Inc.</organization>
+			<organizationUrl>http://www.spring.io</organizationUrl>
+			<roles>
+				<role>Spring Data Team</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<properties>
+		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<java.version>1.8</java.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring.version>5.0.1.RELEASE</spring.version>
+		<spring-data-releasetrain.version>Kay-SR1</spring-data-releasetrain.version>
+		<spring-shell.version>1.2.0.RELEASE</spring-shell.version>
+		<metrics.version>3.2.2</metrics.version>
+	</properties>
+
+     <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.shell</groupId>
+				<artifactId>spring-shell</artifactId>
+				<version>${spring-shell.version}</version>
+			</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+			<version>${metrics.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.shell</groupId>
+			<artifactId>spring-shell</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.dropwizard.metrics</groupId>
+			<artifactId>metrics-core</artifactId>
+			<version>${metrics.version}</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+	       <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>gemfire</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-gemfire</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>geode</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-geode</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+</project>

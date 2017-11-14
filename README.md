@@ -1,6 +1,8 @@
 ## Exposing Geode Statistics as JMX
 
-Geode currently exposes tons of metrics via JMX.  However there are still hundreds more that could be exposed.   In this project we will expose some of those metrics via JMX so the information can be consumed in many ways.   
+Note that this project is a derivative of Charlie Black's Geode project dome with Gradle. This project adapts it for GemFire and Maven.
+
+GemFire currently exposes tons of metrics via JMX.  However there are still hundreds more that could be exposed.   In this project we will expose some of those metrics via JMX so the information can be consumed in many ways.   
 
 ##  What does a statistics definition look like?
 
@@ -16,7 +18,7 @@ https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=61309918
 
 For the example I thought it would be good to show a customizable example.   In this example I make use of regular expressions to make it easier to expose metrics in bulk.
 
-To define which metrics to expose I used a plain ole properties file.   The format of the property and value is:
+To define which metrics to expose I used a properties file.   The format of the property and value is:
 
 ```
 <Metric Type>:[Optional Resource RegEx |]<Metric RegEx>[,<Subsequent Metric RegEx> ]
@@ -52,3 +54,8 @@ CacheServerStats: current.*,acceptsInProgress
 ```
 Java Mission Control of process:
 ![vsd](/images/jmc.png)
+
+I also want to know any time the delayDuration spikes higher than 5 seconds, indicating swapping or pausing in the environment.
+
+The registration of the statistics happens in the GemFire "initializer." This is a feature in GemFire that is run once on startup and is used for initialization.
+# gemfire-jmx-exposing-metrics
